@@ -9,7 +9,7 @@ void net::trainNetwork()
         averageError = 0;
         for(unsigned i = 0; (i < 4); i++)
         {
-            initSet(i); //·¨•≠† Æ°„Á†ÓÈ•© ¢Î°Æ‡™®
+            initSet(i); //—Å–º–µ–Ω–∞ –æ–±—É—á–∞—é—â–µ–π –≤—ã–±–æ—Ä–∫–∏
             feedForward();
             backPropagation();
             averageError += abs(error);
@@ -17,43 +17,43 @@ void net::trainNetwork()
         }
         averageError /= 4;
         epoch++;
-        if((epoch % 1000) == 0)
+        if((epoch % 25) == 0)
         {
-            cout << "----------------------- ùØÆÂ† " << epoch << " ---------------------------" << endl;
+            cout << "----------------------- –≠–ø–æ—Ö–∞ " << epoch << " ---------------------------" << endl;
             printInfo();
         }
     }
 
 
-    cout << endl << "---------------------é°„Á•≠®• ß†¢•‡Ë•≠Æ!-----------------------" << endl << endl;
-    cout << " äÆÌ‰‰®Ê®•≠‚ ·™Æ‡Æ·‚® Æ°„Á•≠®Ô " << learningRate << endl;
-    cout << " èÆ‚‡•°Æ¢†´Æ·Ï: "  << epoch << " ÌØÆÂ" << endl;
+    cout << endl << "---------------------–û–±—É—á–µ–Ω–∏–µ –∑–∞–≤–µ—Ä—à–µ–Ω–æ!-----------------------" << endl << endl;
+    cout << " –ö–æ—ç—Ñ—Ñ–∏—Ü–∏–µ–Ω—Ç —Å–∫–æ—Ä–æ—Å—Ç–∏ –æ–±—É—á–µ–Ω–∏—è " << learningRate << endl;
+    cout << " –ü–æ—Ç—Ä–µ–±–æ–≤–∞–ª–æ—Å—å: "  << epoch << " —ç–ø–æ—Ö" << endl;
 
 }
 
-//ë¨•≠† Æ°„Ê†ÓÈ®Â §†≠≠ÎÂ
+//–°–º–µ–Ω–∞ –æ–±—É—Ü–∞—é—â–∏—Ö –¥–∞–Ω–Ω—ã—Ö
 net::net(double _limit, double _learningRate)
 {
     limit = _limit;
     learningRate = _learningRate;
-    //á†§†•¨ ¢ÂÆ§Î
+    //–ó–∞–¥–∞–µ–º –≤—Ö–æ–¥—ã
     for(unsigned i = 0; i < 2; i++)
     {
         x.push_back(inputs[1][i]);
         //cout << x.at(i) << " " << endl;
     }
 
-    //á†§†•¨ ¶•´†•¨Æ• ß≠†Á•≠®•(ÆØ•‡†Ê®Ô ®·™´ÓÁ†ÓÈ•• .®´®.)
+    //–ó–∞–¥–∞–µ–º –∂–µ–ª–∞–µ–º–æ–µ –∑–Ω–∞—á–µ–Ω–∏–µ(–æ–ø–µ—Ä–∞—Ü–∏—è –∏—Å–∫–ª—é—á–∞—é—â–µ–µ .–∏–ª–∏.)
     this->desiredResult = static_cast<double>(static_cast<bool>(x[0]) ^ static_cast<bool>(x[1]));
 
-    //ç•©‡Æ≠Î ·¨•È•≠®Ô ¢·•£§† ‡†¢≠Î 1
+    //–ù–µ–π—Ä–æ–Ω—ã —Å–º–µ—â–µ–Ω–∏—è –≤—Å–µ–≥–¥–∞ —Ä–∞–≤–Ω—ã 1
     for(unsigned i = 0; i < 3; i++)
     {
         bias.push_back(1);
         //cout << bias.at(i) << " " << endl;
     }
 
-    //è‡®§†•¨ ·´„Á†©≠Î• ß≠†Á•≠®Ô ¢•·†¨
+    //–ü—Ä–∏–¥–∞–µ–º —Å–ª—É—á–∞–π–Ω—ã–µ –∑–Ω–∞—á–µ–Ω–∏—è –≤–µ—Å–∞–º
     w.resize(3);
     dw.resize(3);
     for(unsigned i = 0; i < 3; i++)
@@ -73,7 +73,7 @@ net::net(double _limit, double _learningRate)
         //cout << endl;
     }
 
-    //Ç•·† ≠•©‡Æ≠Æ¢ ·¨•È•≠®Ô
+    //–í–µ—Å–∞ –Ω–µ–π—Ä–æ–Ω–æ–≤ —Å–º–µ—â–µ–Ω–∏—è
     bw.resize(3);
     dbw.resize(3);
     a.resize(3);
@@ -94,13 +94,13 @@ net::net(double _limit, double _learningRate)
 
 void net::initSet(unsigned variant)
 {
-    //á†§†•¨ ¢ÂÆ§Î
+    //–ó–∞–¥–∞–µ–º –≤—Ö–æ–¥—ã
     for(unsigned i = 0; i < 2; i++)
     {
         x[i] = inputs[variant][i];
     }
 
-    //á†§†•¨ ¢ÎÂÆ§(ÆØ•‡†Ê®Ô ®·™´ÓÁ†ÓÈ•• .®´®.)
+    //–ó–∞–¥–∞–µ–º –≤—ã—Ö–æ–¥(–æ–ø–µ—Ä–∞—Ü–∏—è –∏—Å–∫–ª—é—á–∞—é—â–µ–µ .–∏–ª–∏.)
     desiredResult = static_cast<double>(static_cast<bool>(x[0]) ^ static_cast<bool>(x[1]));
 }
 
@@ -119,10 +119,10 @@ double net::feedForward()
 }
 
 
-//ê†·Á•‚ ÆË®°™®
+//–†–∞—Å—á–µ—Ç –æ—à–∏–±–∫–∏
 double net::backPropagation()
 {
-    //ÇÎÁ®·´•≠®• ÆË®°™®
+    //–í—ã—á–∏—Å–ª–µ–Ω–∏–µ –æ—à–∏–±–∫–∏
     error = desiredResult - out;
     for(unsigned j = 0; j < 3; j++)
     {
@@ -131,10 +131,10 @@ double net::backPropagation()
     }
 
 
-    //è•‡¢Î© ·´Æ©
-    for(unsigned i = 0; i < 2; i++) //Ø‡ÆÂÆ§ ØÆ ≠•©‡Æ≠†¨
+    //–ü–µ—Ä–≤—ã–π —Å–ª–æ–π
+    for(unsigned i = 0; i < 2; i++) //–ø—Ä–æ—Ö–æ–¥ –ø–æ –Ω–µ–π—Ä–æ–Ω–∞–º
     {
-        for(unsigned j = 0; j < 3; j++)     //è‡ÆÂÆ§ ØÆ ≠Æ¨•‡„ ¢•·†
+        for(unsigned j = 0; j < 3; j++)     //–ü—Ä–æ—Ö–æ–¥ –ø–æ –Ω–æ–º–µ—Ä—É –≤–µ—Å–∞
         {
              dw[0][i][j] = learningRate*delta[0][j]*actFuncDiv(a[0][j])*x[i];
              w[0][i][j] += dw[0][i][j];
@@ -142,27 +142,27 @@ double net::backPropagation()
     }
 
 
-    //Ç‚Æ‡Æ© ·´Æ©
-    for(unsigned i = 0; i < 3; i++) //Ø‡ÆÂÆ§ ØÆ ≠•©‡Æ≠†¨
+    //–í—Ç–æ—Ä–æ–π —Å–ª–æ–π
+    for(unsigned i = 0; i < 3; i++) //–ø—Ä–æ—Ö–æ–¥ –ø–æ –Ω–µ–π—Ä–æ–Ω–∞–º
     {
-        for(unsigned j = 0; j < 3; j++)     //è‡ÆÂÆ§ ØÆ ≠Æ¨•‡„ ¢•·†
+        for(unsigned j = 0; j < 3; j++)     //–ü—Ä–æ—Ö–æ–¥ –ø–æ –Ω–æ–º–µ—Ä—É –≤–µ—Å–∞
         {
              dw[1][i][j] = learningRate*delta[1][j]*actFuncDiv(a[1][j])*a[0][i];
              w[1][i][j] += dw[1][i][j];
         }
     }
 
-    //ÇÎÂÆ§≠Æ© ·´Æ©
+    //–í—ã—Ö–æ–¥–Ω–æ–π —Å–ª–æ–π
     for(unsigned i = 0; i < 3; i++)
     {
         dw[2][i][0] = learningRate*error*actFuncDiv(out)*a[1][i];
         w[2][i][0] += dw[2][i][0];
     }
 
-    //ç•©‡Æ≠Î ·¨•È•≠®Ô
-    for(unsigned i = 0; i < 2; i++) //Ø‡ÆÂÆ§ ØÆ ≠•©‡Æ≠†¨
+    //–ù–µ–π—Ä–æ–Ω—ã —Å–º–µ—â–µ–Ω–∏—è
+    for(unsigned i = 0; i < 2; i++) //–ø—Ä–æ—Ö–æ–¥ –ø–æ –Ω–µ–π—Ä–æ–Ω–∞–º
     {
-        for(unsigned j = 0; j < 3; j++)     //è‡ÆÂÆ§ ØÆ ≠Æ¨•‡„ ¢•·†
+        for(unsigned j = 0; j < 3; j++)     //–ü—Ä–æ—Ö–æ–¥ –ø–æ –Ω–æ–º–µ—Ä—É –≤–µ—Å–∞
         {
              dbw[i][j] = learningRate*delta[i][j]*actFuncDiv(a[i][j])*bias[i];
              bw[i][j] += dbw[i][j];
@@ -174,7 +174,7 @@ double net::backPropagation()
     return error;
 }
 
-double net::actFunc(double value) { return tanh(value); }               //É®Ø•‡°Æ´®Á•·™®© ‚†≠£•≠·
+double net::actFunc(double value) { return tanh(value); }               //–ì–∏–ø–µ—Ä–±–æ–ª–∏—á–µ—Å–∫–∏–π —Ç–∞–Ω–≥–µ–Ω—Å
 
 double net::actFuncDiv(double value) { return 1/pow(cosh(value),2); }
 

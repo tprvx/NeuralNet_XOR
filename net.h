@@ -13,38 +13,38 @@ class net
 
 private:
 
-    vector<double> x;                   //Входной слой
-    double out;                         //Выходной слой
-    double error = 0;                   //Ошибка сети
-    double averageError;                //Средняя ошибка за эпоху
+    vector<double> x;                   //╨Т╤Е╨╛╨┤╨╜╨╛╨╣ ╤Б╨╗╨╛╨╣
+    double out;                         //╨Т╤Л╤Е╨╛╨┤╨╜╨╛╨╣ ╤Б╨╗╨╛╨╣
+    double error = 0;                   //╨Ю╤И╨╕╨▒╨║╨░ ╤Б╨╡╤В╨╕
+    double averageError;                //╨б╤А╨╡╨┤╨╜╤П╤П ╨╛╤И╨╕╨▒╨║╨░ ╨╖╨░ ╤Н╨┐╨╛╤Е╤Г
 
-    vector<vector<unsigned>> inputs = {{0,0},{0,1},{1,0},{1,1}}; //Коллекция входных данных
-    double desiredResult;                                        //Ожидаемое значение на выходе сети
+    vector<vector<unsigned>> inputs = {{0,0},{0,1},{1,0},{1,1}}; //╨Ъ╨╛╨╗╨╗╨╡╨║╤Ж╨╕╤П ╨▓╤Е╨╛╨┤╨╜╤Л╤Е ╨┤╨░╨╜╨╜╤Л╤Е
+    double desiredResult;                                        //╨Ю╨╢╨╕╨┤╨░╨╡╨╝╨╛╨╡ ╨╖╨╜╨░╤З╨╡╨╜╨╕╨╡ ╨╜╨░ ╨▓╤Л╤Е╨╛╨┤╨╡ ╤Б╨╡╤В╨╕
 
-    vector<vector<double>> a;           //Состояния нейронов слой:номер
-    vector<vector<vector<double>>> w;   //Матрица весов слой:нейрон:номер
-    vector<vector<vector<double>>> dw;   //Матрица поправок весов слой:нейрон:номер
-    vector<vector<double>> delta;        //Ошибка нейрона
+    vector<vector<double>> a;           //╨б╨╛╤Б╤В╨╛╤П╨╜╨╕╤П ╨╜╨╡╨╣╤А╨╛╨╜╨╛╨▓ ╤Б╨╗╨╛╨╣:╨╜╨╛╨╝╨╡╤А
+    vector<vector<vector<double>>> w;   //╨Ь╨░╤В╤А╨╕╤Ж╨░ ╨▓╨╡╤Б╨╛╨▓ ╤Б╨╗╨╛╨╣:╨╜╨╡╨╣╤А╨╛╨╜:╨╜╨╛╨╝╨╡╤А
+    vector<vector<vector<double>>> dw;   //╨Ь╨░╤В╤А╨╕╤Ж╨░ ╨┐╨╛╨┐╤А╨░╨▓╨╛╨║ ╨▓╨╡╤Б╨╛╨▓ ╤Б╨╗╨╛╨╣:╨╜╨╡╨╣╤А╨╛╨╜:╨╜╨╛╨╝╨╡╤А
+    vector<vector<double>> delta;        //╨Ю╤И╨╕╨▒╨║╨░ ╨╜╨╡╨╣╤А╨╛╨╜╨░
 
-    vector<double> bias;                //Состояние нейронов смещения
-    vector<vector<double>> bw;          //Веса нейронов смещения
-    vector<vector<double>> dbw;          //Проправки весов нейронов смещения
+    vector<double> bias;                //╨б╨╛╤Б╤В╨╛╤П╨╜╨╕╨╡ ╨╜╨╡╨╣╤А╨╛╨╜╨╛╨▓ ╤Б╨╝╨╡╤Й╨╡╨╜╨╕╤П
+    vector<vector<double>> bw;          //╨Т╨╡╤Б╨░ ╨╜╨╡╨╣╤А╨╛╨╜╨╛╨▓ ╤Б╨╝╨╡╤Й╨╡╨╜╨╕╤П
+    vector<vector<double>> dbw;          //╨Я╤А╨╛╨┐╤А╨░╨▓╨║╨╕ ╨▓╨╡╤Б╨╛╨▓ ╨╜╨╡╨╣╤А╨╛╨╜╨╛╨▓ ╤Б╨╝╨╡╤Й╨╡╨╜╨╕╤П
 
 
-    double learningRate;        //Коэффициент обучения       Меньше 0,3 ставить
-    double limit;              //Точность обучения          0,001
-    unsigned epoch = 0;                //Кол-во эпох
+    double learningRate;        //╨Ъ╨╛╤Н╤Д╤Д╨╕╤Ж╨╕╨╡╨╜╤В ╨╛╨▒╤Г╤З╨╡╨╜╨╕╤П       ╨Ь╨╡╨╜╤М╤И╨╡ 0,3 ╤Б╤В╨░╨▓╨╕╤В╤М
+    double limit;              //╨в╨╛╤З╨╜╨╛╤Б╤В╤М ╨╛╨▒╤Г╤З╨╡╨╜╨╕╤П          0,001
+    unsigned epoch = 0;                //╨Ъ╨╛╨╗-╨▓╨╛ ╤Н╨┐╨╛╤Е
 
 public:
     net(double _limit = 0.01, double _learningRate = 0.01);
 
-    void initSet(unsigned variant);      //смена входных и выходных данных
-    double feedForward();                //функция прямого распространения сигнала, решение задачи
-    double actFunc(double value);        //активационная функция
-    double backPropagation();            //функция вычисления попровок весов
-    void trainNetwork();                 //функция тренировки сети
-    double actFuncDiv(double value);     //производная функции активации
-    void printInfo();                                       //Вывод результата
+    void initSet(unsigned variant);      //╤Б╨╝╨╡╨╜╨░ ╨▓╤Е╨╛╨┤╨╜╤Л╤Е ╨╕ ╨▓╤Л╤Е╨╛╨┤╨╜╤Л╤Е ╨┤╨░╨╜╨╜╤Л╤Е
+    double feedForward();                //╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨┐╤А╤П╨╝╨╛╨│╨╛ ╤А╨░╤Б╨┐╤А╨╛╤Б╤В╤А╨░╨╜╨╡╨╜╨╕╤П ╤Б╨╕╨│╨╜╨░╨╗╨░, ╤А╨╡╤И╨╡╨╜╨╕╨╡ ╨╖╨░╨┤╨░╤З╨╕
+    double actFunc(double value);        //╨░╨║╤В╨╕╨▓╨░╤Ж╨╕╨╛╨╜╨╜╨░╤П ╤Д╤Г╨╜╨║╤Ж╨╕╤П
+    double backPropagation();            //╤Д╤Г╨╜╨║╤Ж╨╕╤П ╨▓╤Л╤З╨╕╤Б╨╗╨╡╨╜╨╕╤П ╨┐╨╛╨┐╤А╨╛╨▓╨╛╨║ ╨▓╨╡╤Б╨╛╨▓
+    void trainNetwork();                 //╤Д╤Г╨╜╨║╤Ж╨╕╤П ╤В╤А╨╡╨╜╨╕╤А╨╛╨▓╨║╨╕ ╤Б╨╡╤В╨╕
+    double actFuncDiv(double value);     //╨┐╤А╨╛╨╕╨╖╨▓╨╛╨┤╨╜╨░╤П ╤Д╤Г╨╜╨║╤Ж╨╕╨╕ ╨░╨║╤В╨╕╨▓╨░╤Ж╨╕╨╕
+    void printInfo();                                       //╨Т╤Л╨▓╨╛╨┤ ╤А╨╡╨╖╤Г╨╗╤М╤В╨░╤В╨░
     double getDesireResult() { return desiredResult; }
     double getOutput() { return out;}
 };

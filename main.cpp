@@ -4,14 +4,15 @@ int main()
 {
     net n(0.00002,0.0005);
     char isTrain = 'y';
-    cout << "�७�஢��� �������? ('y' or 'n')";
+    cout << "Тренировать нейросеть? ('y' or 'n')";
     cin >> isTrain;
     if(isTrain == 'y')
     {
         n.trainNetwork();
+
     }
 
-    cout << endl << "�஢�ઠ: " << endl;
+    cout << endl << "Проверка: " << endl;
 
     auto p = 0.0;
     for (unsigned i = 0; i < 4; i++)
@@ -21,7 +22,7 @@ int main()
         n.printInfo();
         p += abs(n.getDesireResult() - n.getOutput());
     }
-    cout << endl << "��筮���: " << 100 - p/4*100 << "%" << endl;
+    cout << endl << "Точность: " << 100 - p/4*100 << "%" << endl;
 
     return 0;
 }
